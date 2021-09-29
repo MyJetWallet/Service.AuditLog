@@ -44,8 +44,6 @@ namespace Service.AuditLog
                 app.UseDeveloperExceptionPage();
             }
             
-            GetEnvVariables();
-
             app.UseRouting();
 
             app.UseMetricServer();
@@ -71,11 +69,6 @@ namespace Service.AuditLog
         {
             builder.RegisterModule<SettingsModule>();
             builder.RegisterModule<ServiceModule>();
-        }
-        
-        private static void GetEnvVariables()
-        {
-
         }
     }
 }
