@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
 using Service.AuditLog.Domain;
@@ -5,16 +6,15 @@ using Service.AuditLog.Grpc;
 using Service.AuditLog.Grpc.Contracts;
 using Service.AuditLog.Grpc.Models;
 using Service.AuditLog.Mappers;
-using SimpleTrading.Common;
 
 namespace Service.AuditLog.Services
 {
     public class AuditLogService : IAuditLogServiceGrpc
     {
-        private readonly IMyQueue<IAuditLog> _myQueue;
+        private readonly ConcurrentQueue<IAuditLog> _myQueue;
         private readonly IAuditLogRepository _auditLogRepository;
 
-        public AuditLogService(IMyQueue<IAuditLog> myQueue, IAuditLogRepository auditLogRepository)
+        public AuditLogService(ConcurrentQueue<IAuditLog> myQueue, IAuditLogRepository auditLogRepository)
         {
             _myQueue = myQueue;
             _auditLogRepository = auditLogRepository;

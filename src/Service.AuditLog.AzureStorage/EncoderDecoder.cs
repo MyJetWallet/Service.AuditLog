@@ -1,4 +1,4 @@
-using SimpleTrading.Common;
+using SimpleTrading.Common.Helpers;
 
 namespace Service.AuditLog.AzureStorage
 {

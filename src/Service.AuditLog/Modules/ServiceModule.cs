@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Text;
 using Autofac;
-using Microsoft.WindowsAzure.Storage;
 using Service.AuditLog.AzureStorage;
 using Service.AuditLog.Domain;
-using SimpleTrading.Common;
 
 namespace Service.AuditLog.Modules
 {
@@ -34,7 +33,7 @@ namespace Service.AuditLog.Modules
                 .As<IAuditLogRepository>()
                 .SingleInstance();
 
-            builder.RegisterInstance(new MyQueue<IAuditLog>()).As<IMyQueue<IAuditLog>>().SingleInstance();
+            builder.RegisterInstance(new ConcurrentQueue<IAuditLog>()).AsSelf().SingleInstance();
         }
     }
 }
